@@ -1,4 +1,4 @@
-package me.alpha12.ecarnet;
+package me.alpha12.ecarnet.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import me.alpha12.ecarnet.R;
+import me.alpha12.ecarnet.classes.Car;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,6 +26,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Car car = new Car();
+        car.name = "Renault Clio 2.2";
+        car.desc = "71 AFB 34 - 65ch 1.5l DCI";
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +45,12 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        TextView drawerTitle = (TextView) findViewById(R.id.car_name);
+        drawerTitle.setText(car.name);
+
+        TextView drawerDesc = (TextView) findViewById(R.id.car_desc);
+        drawerDesc.setText(car.desc);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
